@@ -1,5 +1,6 @@
 defmodule CalculatorApiWeb.UserController do
   use CalculatorApiWeb, :controller
+  use PhoenixSwagger
 
   alias CalculatorApi.Accounts
   alias CalculatorApi.Accounts.User
@@ -39,5 +40,28 @@ defmodule CalculatorApiWeb.UserController do
     with {:ok, %User{}} <- Accounts.delete_user(user) do
       send_resp(conn, :no_content, "")
     end
+  end
+
+  def swagger_definitions do
+    %{
+      User: swagger_schema do
+        title "Accounts"
+        description "A user of the application"
+        properties do
+          login :string, "Users name", required: true
+          password :string, "password"
+        end
+        example %CalculatorApi.Accounts.User{
+          login: "Joe",
+          password: "teste",
+        }
+      end,
+      Users: swagger_schema do
+        title "Accounts"
+        description "A collection of accounts"
+        type :array
+        items Schema.ref(:User)
+      end
+    }
   end
 end
