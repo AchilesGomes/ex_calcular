@@ -10,6 +10,9 @@ To start your Phoenix server:
   * Install dependencies with `mix deps.get`
   * Create and migrate your database with `mix ecto.setup`
   * Start Phoenix endpoint with `mix phx.server`
+  * You can open a new terminal and `docker-compose up psql`
+  * You can close vm and `docker-compose up`
+  
 
   ### You can use postman request CalculatorApi.postman_collection.json
   * Create a user
