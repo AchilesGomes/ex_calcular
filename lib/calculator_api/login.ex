@@ -10,8 +10,16 @@ defmodule CalculatorApi.Login do
   alias CalculatorApi.Accounts.User
   alias CalculatorApiWeb.Endpoint
 
-  def get_user!(login), do: Repo.get_by!(User, [login: login])
+  def get_user!(login) do
+    User
+    |> Repo.get_by([login: login])
+    |> case do
+      nil     -> {:error, "Nenhum resultado encontrado."}
+      result  -> result 
+    end
+  end
 
+  def validate_password({:error, message}, _), do: {:error, message}
   def validate_password(%User{password: password} = usuario, param) do
     password
     |> Kernel.===(param)
