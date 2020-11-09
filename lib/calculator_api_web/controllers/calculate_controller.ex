@@ -4,6 +4,16 @@ defmodule CalculatorApiWeb.CalculateController do
   use CalculatorApiWeb, :controller
 
   alias CalculatorApi.Calculate
+  alias CalculatorApi.Log
+
+  @spec index(struct(), none()) :: map()
+  def index(conn, _params) do
+    result = Log.get_all_params()
+
+    conn
+    |> put_status(:ok)
+    |> json(%{data: result})
+  end
 
   @spec create(struct(), map()) :: map()
   def create(conn, %{"calculo" => calculo}) do

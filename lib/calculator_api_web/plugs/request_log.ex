@@ -30,5 +30,5 @@ defmodule CalculatorApiWeb.Plugs.RequestLog do
   end
 
   defp resp_body(%Plug.Conn{body_params: params}) when params === %{}, do: ""
-  defp resp_body(conn), do: inspect(conn.body_params)
+  defp resp_body(conn), do: conn.body_params["calculo"]
 end

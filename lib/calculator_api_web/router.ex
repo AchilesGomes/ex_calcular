@@ -16,7 +16,7 @@ defmodule CalculatorApiWeb.Router do
     plug CalculatorApiWeb.Plugs.Auth
     plug :fetch_session
     plug :fetch_flash
-    plug :protect_from_forgery
+    # plug :protect_from_forgery
     plug :put_secure_browser_headers
   end
 
@@ -29,7 +29,7 @@ defmodule CalculatorApiWeb.Router do
   scope "/api", CalculatorApiWeb do
     pipe_through :api
 
-    resources "/calcular", CalculateController, [:new, :edit]
+    resources "/calcular", CalculateController, [:edit, :new, :show, :update, :delete]
     resources "/usuarios", UserController, except: [:new, :edit]
   end
 
