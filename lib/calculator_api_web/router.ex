@@ -3,21 +3,34 @@ defmodule CalculatorApiWeb.Router do
 
   use CalculatorApiWeb, :router
 
+  pipeline :api_public do
+    plug :accepts, ["json"]
+    
+    # plug CalculatorApiWeb.Plugs.RequestLog
+  end
+
   pipeline :api do
     plug :accepts, ["json"]
+
     plug CalculatorApiWeb.Plugs.RequestLog
-    # plug :protect_from_forgery
-    # plug :put_secure_browser_headers
+    plug CalculatorApiWeb.Plugs.Auth
+    plug :fetch_session
+    plug :fetch_flash
+    plug :protect_from_forgery
+    plug :put_secure_browser_headers
+  end
+
+  scope "/api", CalculatorApiWeb do
+    pipe_through :api_public
+
+    resources "/login", LoginController, except: [:index, :edit, :new, :show, :update, :delete]
   end
 
   scope "/api", CalculatorApiWeb do
     pipe_through :api
-  end
 
-  scope "/api", CalculatorApiWeb do
-    pipe_through :api
-
-    post "/calcular", CalculateController, :index
+    resources "/calcular", CalculateController, [:new, :edit]
+    resources "/usuarios", UserController, except: [:new, :edit]
   end
 
   # # Enables LiveDashboard only for development
