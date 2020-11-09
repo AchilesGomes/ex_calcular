@@ -1,0 +1,174 @@
+{
+	"info": {
+		"_postman_id": "0f4a3e67-3372-4f4c-97b8-3970274ffb11",
+		"name": "CalculatorApi",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "calcular",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "SFMyNTY.g2gDYQZuBgBxqWOrdQFiAAFRgA.zDtLbzGbCkznT0s51Uy4gcdQ1gMUnA2n12Upap1iWA4",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"calculo\": \"(10*10)+(20/5)*(5*15)\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/api/calcular",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"api",
+						"calcular"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Criar usuário",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"user\": {\r\n        \"login\": \"teste\",\r\n        \"password\": \"teste\"\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/api/usuarios",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"api",
+						"usuarios"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Obter usuários",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "SFMyNTY.g2gDYQZuBgCjdE6qdQFiAAFRgA.b9f4fTc_hns55J4_vNVYw4iy3vDmSFCyHdkTaZPE0rA",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{base_url}}/api/usuarios",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"api",
+						"usuarios"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Efetuar Login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"usuario\": \"admin\",\r\n    \"senha\": \"admin\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/api/login",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"api",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Obter calculos realizados",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "SFMyNTY.g2gDYQZuBgBxqWOrdQFiAAFRgA.zDtLbzGbCkznT0s51Uy4gcdQ1gMUnA2n12Upap1iWA4",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{base_url}}/api/calcular",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"api",
+						"calcular"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "563fbd9a-74da-4db8-b15e-601db5af1624",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "2dc57975-6948-46ac-83a1-b0057a3fbf6b",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"id": "61a73bce-857b-4ca5-9a3d-995606a406a6",
+			"key": "base_url",
+			"value": "http://localhost:4030"
+		}
+	],
+	"protocolProfileBehavior": {}
+}
