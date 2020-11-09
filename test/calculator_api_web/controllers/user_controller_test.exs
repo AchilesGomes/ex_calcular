@@ -4,6 +4,8 @@ defmodule CalculatorApiWeb.UserControllerTest do
   alias CalculatorApi.Accounts
   alias CalculatorApi.Accounts.User
 
+  @token "SFMyNTY.g2gDYQZuBgCjdE6qdQFiAAFRgA.b9f4fTc_hns55J4_vNVYw4iy3vDmSFCyHdkTaZPE0rA"
+
   @create_attrs %{
     login: "some login",
     password: "some password"
@@ -20,7 +22,13 @@ defmodule CalculatorApiWeb.UserControllerTest do
   end
 
   setup %{conn: conn} do
-    {:ok, conn: put_req_header(conn, "accept", "application/json")}
+    {
+      :ok,
+      conn:
+        conn
+        |> put_req_header("accept", "application/json")
+        |> put_req_header("authorization", @token)
+    }
   end
 
   describe "index" do
