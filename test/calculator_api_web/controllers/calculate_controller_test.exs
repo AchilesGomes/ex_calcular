@@ -3,6 +3,7 @@ defmodule CalculatorApiWeb.CalculateControllerTest do
 
   alias CalculatorApi.Calculate
 
+  @token "SFMyNTY.g2gDYQZuBgCjdE6qdQFiAAFRgA.b9f4fTc_hns55J4_vNVYw4iy3vDmSFCyHdkTaZPE0rA"
   @params "(10*10)+(20/5)*(5*1.5)"
   @invalid_params "(10*10)+(20/5)*(5*1.5)A"
 
@@ -12,10 +13,16 @@ defmodule CalculatorApiWeb.CalculateControllerTest do
   end  
 
   setup %{conn: conn} do
-    {:ok, conn: put_req_header(conn, "accept", "application/json")}
+    {
+      :ok,
+      conn:
+        conn
+        |> put_req_header("accept", "application/json")
+        |> put_req_header("authorization", @token)
+    }
   end
 
-  describe "calculate" do
+  describe "calculate/1" do
     test "realiza o cálculo de uma operação matemática", %{conn: conn} do
       conn = post(conn, Routes.calculate_path(conn, :index), calculo: @params)
       assert json_response(conn, 201)["resultado"] == 130

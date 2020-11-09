@@ -1,13 +1,9 @@
 defmodule CalculatorApiWeb.CalculateController do
+  @moduledoc false
+
   use CalculatorApiWeb, :controller
 
   alias CalculatorApi.Calculate
-
-  def index(conn, _params) do
-    conn
-    |> put_status(:ok)
-    |> json(%{resultado: "Hellou"})
-  end
 
   @spec create(struct(), map()) :: map()
   def create(conn, %{"calculo" => calculo}) do
