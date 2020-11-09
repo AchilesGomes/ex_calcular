@@ -21,7 +21,7 @@ defmodule CalculatorApiWeb.Plugs.RequestLog do
       |> RequestLog.changeset(log)
       |> Repo.insert()
       |> case do
-        {_, nil} -> conn
+        {_integer, nil} -> conn
 
         _ ->
           conn
