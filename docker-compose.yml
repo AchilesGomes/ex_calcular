@@ -1,0 +1,35 @@
+version: '3.5'
+services:
+  api:
+    build: ./
+    working_dir: /code
+    command: mix phx.server
+    volumes:
+      - .:/code
+    # env_file: .env
+    ports:
+      - "4030:4000"
+    networks: 
+      - calc_network
+
+  pgsql:
+    image: postgres
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: data
+    restart: always
+    volumes:
+      - calc_database:/var/lib/postgresql/data:Z
+    ports:
+      - "5432:5432"
+    networks: 
+      - calc_network
+
+volumes:
+  calc_database:
+    external: true
+
+networks:
+  calc_network:
+      name: custom_network
